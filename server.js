@@ -30,7 +30,9 @@ app.get("/", (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+    console.log(`Server is running o '
+        
+        n port ${port}`);
 });
 
 app.post("/signup", (req, res) => {
@@ -88,3 +90,4 @@ app.post("/login", (req, res) => {
 app.get("/profile", authenticateToken, (req, res) => {
     res.json({ message: "Welcome to your profile!", user: req.user });
 });
+//ini contoh pembeda untuk test compar branching dan main.
