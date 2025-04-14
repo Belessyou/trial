@@ -4,8 +4,13 @@ const port = 5000;
 const users = []; //Temporary inmemory storage
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
-const usersFile = "users.json"; 
+const usersFile = "users.json";
 require("dotenv").config();
+
+const authRoutes = require('./routes/auth'); // Path sesuai tempat kamu simpan
+
+app.use('/api/auth', authRoutes);
+
 const authenticateToken = (req, res, next) => {
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
@@ -25,14 +30,15 @@ const authenticateToken = (req, res, next) => {
 
 app.use(express.json());
 
+const bookRoutes = require('./routes/books');
+app.use('/api/books', bookRoutes);
+
 app.get("/", (req, res) => {
     res.send("Welcome to the API!");
 });
 
 app.listen(port, () => {
-    console.log(`Server is running o '
-        
-        n port ${port}`);
+    console.log(`✅ Server is running on port ${port}`);
 });
 
 app.post("/signup", (req, res) => {
